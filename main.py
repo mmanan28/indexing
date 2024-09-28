@@ -1,3 +1,4 @@
+from urllib import response
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from PyPDF2 import PdfReader
 import openai
@@ -17,6 +18,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.chains import RetrievalQA
 import hashlib
 import uvicorn
+import markdown
 
 from dotenv import load_dotenv
 load_dotenv(dotenv_path=".env",override=True)
@@ -232,6 +234,10 @@ async def print_message(request: MessageRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+
 
 
 @app.delete("/delete-index/{index_name}")
